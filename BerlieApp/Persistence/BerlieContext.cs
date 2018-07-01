@@ -10,7 +10,7 @@ namespace BerlieApp.Persistence
 {
     class BerlieContext : DbContext
     {
-        public virtual DbSet<Employee> Employeess { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
 
         public BerlieContext()
         { }

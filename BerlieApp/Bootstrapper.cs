@@ -1,4 +1,5 @@
-﻿using BerlieApp.ViewModels;
+﻿using BerlieApp.Model;
+using BerlieApp.ViewModels;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -6,39 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Unity;
 
 namespace BerlieApp
 {
     public class Bootstrapper : BootstrapperBase
     {
-        private SimpleContainer _container = new SimpleContainer();
+        private UnityContainer _container = new UnityContainer();
 
         public Bootstrapper()
         {
             Initialize();
         }
-        
+
         protected override void Configure()
         {
-            _container.Singleton<DashboardViewModel>();
-            _container.Singleton<ShellViewModel>();
-            _container.Singleton<EmployeeListViewModel>();
-            _container.Singleton<EducationTabViewModel>();
-            _container.Singleton<DesignationsTabViewModel>(); 
-            _container.Singleton<IWindowManager, WindowManager>();
-            _container.Singleton<IEventAggregator, EventAggregator>();
+            ConfigureObjectMapper();
+
+            _container.RegisterSingleton<IWindowManager, WindowManager>();
+            _container.RegisterSingleton<IEventAggregator, EventAggregator>();
 
             base.Configure();
         }
 
+        private static void ConfigureObjectMapper()
+        {
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<AddEditEmployeeViewModel, Employee>().ReverseMap();
+            });
+        }
+
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return _container.GetAllInstances(service);
+            return _container.ResolveAll(service);
         }
 
         protected override object GetInstance(Type service, string key)
         {
-            return _container.GetInstance(service, key);
+            return _container.Resolve(service, key);
         }
 
         protected override void BuildUp(object instance)

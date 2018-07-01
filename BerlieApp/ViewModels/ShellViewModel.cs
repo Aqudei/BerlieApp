@@ -24,8 +24,13 @@ namespace BerlieApp.ViewModels
 
         public void AddEmployee()
         {
-            _windowManager.ShowDialog(new AddEditEmployeeViewModel());
+            _windowManager.ShowDialog(IoC.Get<AddEditEmployeeViewModel>());
 
+        }
+
+        public void GoHome()
+        {
+            ActivateItem(IoC.Get<DashboardViewModel>());
         }
     }
 }

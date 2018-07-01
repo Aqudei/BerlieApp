@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BerlieApp.Model
 {
-    class Employee
+    class Employee : EntityBase
     {
         public string FullName
         {
@@ -16,7 +16,7 @@ namespace BerlieApp.Model
             }
         }
 
-        public int Id { get; set; }
+       
         public string FirstName { get; internal set; }
         public string MiddleName { get; internal set; }
         public string LastName { get; internal set; }
@@ -24,6 +24,8 @@ namespace BerlieApp.Model
         public string Sex { get; internal set; }
         public string PlaceOfBirth { get; internal set; }
         public string PresentAddress { get; internal set; }
+
+        public override string EntityCode => "EMP";
 
         public override string ToString()
         {
