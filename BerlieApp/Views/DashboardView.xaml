@@ -8,11 +8,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="Add Employee" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="89" Height="21"/>
+        <TextBlock FontSize="36">Dashboard</TextBlock>
+        <Button Content="Add Employee"
+                cal:Message.Attach="AddEmployee"
+                HorizontalAlignment="Left" Margin="47,100,0,0" VerticalAlignment="Top" Width="89" Height="21"/>
         <Button Content="List Employees" 
                 cal:Message.Attach="ListEmployees"
                 HorizontalAlignment="Left" 
-                Margin="10,46,0,0" VerticalAlignment="Top" Width="89" Height="21"/>
+                Margin="47,136,0,0" VerticalAlignment="Top" Width="89" Height="21"/>
 
     </Grid>
 </UserControl>

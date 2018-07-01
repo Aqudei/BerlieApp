@@ -11,7 +11,7 @@
 
         <DockPanel LastChildFill="True" Margin="0,32,0,0">
             <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
-                <Button x:Name="ViewAttachments">View Attachments</Button>
+                <Button x:Name="ViewAttachments" Margin="2">View Attachments</Button>
             </StackPanel>
             <Grid DockPanel.Dock="Bottom">
                 <Grid.RowDefinitions>

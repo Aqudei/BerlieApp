@@ -9,15 +9,23 @@ namespace BerlieApp.ViewModels
 {
     class ShellViewModel : Conductor<object>
     {
+        private readonly IWindowManager _windowManager;
 
-        public ShellViewModel()
+        public ShellViewModel(IWindowManager windowManager)
         {
             ActivateItem(IoC.Get<DashboardViewModel>());
+            this._windowManager = windowManager;
         }
 
         public void ListEmployees()
         {
             ActivateItem(IoC.Get<EmployeeListViewModel>());
+        }
+
+        public void AddEmployee()
+        {
+            _windowManager.ShowDialog(new AddEditEmployeeViewModel());
+
         }
     }
 }
